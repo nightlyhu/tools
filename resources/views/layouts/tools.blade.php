@@ -5,7 +5,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="description" content="ViTamas.hu"/>
+    <meta name="description" content="Nightly.hu Tools"/>
     <meta name="author" content="Vincze Tamás Zoltán"/>
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <base href="/"/>
@@ -13,11 +13,12 @@
     <title>{{ $title }}</title>
 
     @yield('meta')
+
     <link rel="icon" type="image/png" href="{{ url('tools-favicon.png') }}"/>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdn.materialdesignicons.com/3.3.92/css/materialdesignicons.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.materialdesignicons.com/5.0.45/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="//cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.10/sweetalert2.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast@1.3.0/dist/css/iziToast.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/izitoast@1.3.0/dist/css/iziToast.min.css" rel="stylesheet">
     <link href="{{ asset('css/tools.css') }}" rel="stylesheet"/>
 
     @yield('styles')
@@ -36,7 +37,6 @@
         <a class="p-2 text-dark" href="{{ url('network') }}"><i class="mdi mdi-web"></i> Network</a>
         <a class="p-2 text-dark" href="{{ url('color-picker') }}"><i class="mdi mdi-eyedropper-variant"></i> Color
             Picker</a>
-        <!--<a class="p-2 text-dark" href="http://nightly.scrolls.hu" target="_blank">Blog</a>-->
     </nav>
     <a class="btn btn-outline-success" href="{{ url('links') }}">
         <i class="mdi mdi-link"></i> Useful links
@@ -55,7 +55,7 @@
                     <span class="text-uppercase font-weight-bold" style="font-size: 17px">
                         Developer Tools
                     </span><br>
-                    &copy; 2019 - <a href="http://vitamas.hu" class="text-muted">Vincze Tamás Zoltán</a>
+                    &copy; 2019-{{ date('Y') }} <a href="http://vitamas.hu" class="text-muted">Vincze Tamás Zoltán</a>
                 </small>
             </div>
             <div class="col-6 col-md">
@@ -98,7 +98,7 @@
                     </li>
                     <li>
                         <a class="text-muted" href="https://github.com/" target="_blank">
-                            <i class="mdi mdi-github-face"></i> Github
+                            <i class="mdi mdi-github"></i> Github
                         </a>
                     </li>
                     <li>
@@ -149,7 +149,7 @@
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
-<script src="//stackpath.bootstrapcdn.com/bootstrap/4.2.0/js/bootstrap.min.js"></script>
+<script src="//stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.10/sweetalert2.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/izitoast@1.3.0/dist/js/iziToast.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
