@@ -17,24 +17,33 @@ class ToolController extends Controller {
         $this->toolService = $toolService;
     }
 
+    /**
+     * Generate hash.
+     * POST /tool/generate-hash
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function generateHash(Request $request) {
         $text = $request->get('text', '');
         $algorithm = $request->get('algorithm', '');
 
         if (!$text || !$algorithm) {
-            return response()->json(['success' => false, 'message' => 'Missing data!']);
+            return $this->errorResponse("Missing text!");
         }
 
-        $hash = $this->toolService->hash($algorithm, $text);
-
-        if ($hash) {
-            return response()->json(['success' => true, 'result' => $hash]);
+        $result = $this->toolService->hash($algorithm, $text);
+        if (!$result) {
+            return $this->errorResponse("Problem with generating!");
         }
 
-        return response()->json(['success' => false, 'message' => 'Problem with generation!']);
+        return $this->successResponse(['result' => $result]);
     }
 
     /**
+     * Generate password.
+     * POST /tool/generate-pass
+     *
      * @param Request $request
      * @return JsonResponse
      */
@@ -42,16 +51,18 @@ class ToolController extends Controller {
         $length = (int)$request->get('length', 1);
         $strength = $request->get('strength', '');
 
-        $password = $this->toolService->generatePassword($length, $strength);
-
-        if ($password) {
-            return response()->json(['success' => true, 'result' => $password]);
+        $result = $this->toolService->generatePassword($length, $strength);
+        if (!$result) {
+            return $this->errorResponse("Problem with generating!");
         }
 
-        return response()->json(['success' => false, 'message' => 'Problem with generation!']);
+        return $this->successResponse(['result' => $result]);
     }
 
     /**
+     * Encode or decode text.
+     * POST /tool/encoder
+     *
      * @param Request $request
      * @return JsonResponse
      */
@@ -61,19 +72,21 @@ class ToolController extends Controller {
         $action = $request->get('action', 'encode');
 
         if (!$text) {
-            return response()->json(['success' => false, 'message' => 'Missing data!']);
+            return $this->errorResponse("Missing text!");
         }
 
         $result = $this->toolService->encoding($method, $action, $text);
-
-        if ($result) {
-            return response()->json(['success' => true, 'result' => $result]);
+        if (!$result) {
+            return $this->errorResponse("Problem with encoding/decoding!");
         }
 
-        return response()->json(['success' => false, 'message' => 'Problem with encoding/decoding!']);
+        return $this->successResponse(['result' => $result]);
     }
 
     /**
+     * Transform text.
+     * POST /tool/text-transform
+     *
      * @param Request $request
      * @return JsonResponse
      */
@@ -83,16 +96,15 @@ class ToolController extends Controller {
         $multiple = $request->get('multiple', 'false') == 'true';
 
         if (!$text) {
-            return response()->json(['success' => false, 'message' => 'Missing data!']);
+            return $this->errorResponse("Missing text!");
         }
 
         $result = $this->toolService->textTransform($action, $multiple, $text);
-
-        if ($result) {
-            return response()->json(['success' => true, 'result' => $result]);
+        if (!$result) {
+            return $this->errorResponse("Problem with transform!");
         }
 
-        return response()->json(['success' => false, 'message' => 'Problem with transform!']);
+        return $this->successResponse(['result' => $result]);
     }
 
 }
