@@ -9,7 +9,9 @@ Route::get('generators', 'HomeController@generators');
 Route::get('network', 'HomeController@network');
 Route::get('color-picker/{color?}', 'HomeController@colorPicker');
 
-Route::post('tool/generate-hash', 'ToolController@generateHash');
-Route::post('tool/generate-pass', 'ToolController@generatePass');
-Route::post('tool/encoder', 'ToolController@encoder');
-Route::post('tool/text-transform', 'ToolController@textTransform');
+Route::prefix("tool")->group(function () {
+    Route::post('generate-hash', 'ToolController@generateHash');
+    Route::post('generate-pass', 'ToolController@generatePass');
+    Route::post('encoder', 'ToolController@encoder');
+    Route::post('text-transform', 'ToolController@textTransform');
+});
