@@ -57,6 +57,12 @@
                     </span><br>
                     &copy; 2019-{{ date('Y') }} <a href="http://vitamas.hu" class="text-muted">Vincze Tamás Zoltán</a>
                 </small>
+
+                <br>
+                <b>Created by </b> &nbsp;
+                <a href="https://vitozy.dev">
+                    <img src="https://vitozy.dev/images/logo_v2.png" alt="Logo" style="width: 100px"/>
+                </a>
             </div>
             <div class="col-6 col-md">
                 <h5>Features</h5>

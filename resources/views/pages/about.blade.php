@@ -40,6 +40,11 @@
                     <a class="text-success" href="mailto:prog@vitamas.hu">prog@vitamas.hu</a><br>
                     <i class="mdi mdi-twitter"></i>
                     <a class="text-success" href="https://twitter.com/vitozyhun" target="_blank">vitozyhun</a><br>
+
+                    <br>
+                    <a href="https://vitozy.dev">
+                        <img src="https://vitozy.dev/images/logo_v2.png" alt="Logo" style="width: 150px"/>
+                    </a>
                 </div>
             </div>
         </div>
