@@ -70,7 +70,7 @@ class AgentService extends Service {
             $browser->codename = "";
         }
 
-        $known = array('Version', $browser->codename, 'other');
+        $known = ['Version', $browser->codename, 'other'];
         $pattern = '#(?<browser>' . join('|', $known) . ')[/ ]+(?<version>[0-9.|a-zA-Z.]*)#';
         preg_match_all($pattern, $browser->useragent, $matches);
 

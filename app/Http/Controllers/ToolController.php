@@ -8,10 +8,7 @@ use Illuminate\Http\Request;
 
 class ToolController extends Controller {
 
-    /**
-     * @var ToolService
-     */
-    private $toolService;
+    private ToolService $toolService;
 
     public function __construct(ToolService $toolService) {
         $this->toolService = $toolService;
@@ -24,7 +21,7 @@ class ToolController extends Controller {
      * @param Request $request
      * @return JsonResponse
      */
-    public function generateHash(Request $request) {
+    public function generateHash(Request $request): JsonResponse {
         $text = $request->get('text', '');
         $algorithm = $request->get('algorithm', '');
 
@@ -47,7 +44,7 @@ class ToolController extends Controller {
      * @param Request $request
      * @return JsonResponse
      */
-    public function generatePass(Request $request) {
+    public function generatePass(Request $request): JsonResponse {
         $length = (int)$request->get('length', 1);
         $strength = $request->get('strength', '');
 
@@ -66,7 +63,7 @@ class ToolController extends Controller {
      * @param Request $request
      * @return JsonResponse
      */
-    public function encoder(Request $request) {
+    public function encoder(Request $request): JsonResponse {
         $text = $request->get('input', '');
         $method = $request->get('method', 'base64');
         $action = $request->get('action', 'encode');
@@ -90,7 +87,7 @@ class ToolController extends Controller {
      * @param Request $request
      * @return JsonResponse
      */
-    public function textTransform(Request $request) {
+    public function textTransform(Request $request): JsonResponse {
         $text = $request->get('input', '');
         $action = $request->get('action', 'uppercase');
         $multiple = $request->get('multiple', 'false') == 'true';
