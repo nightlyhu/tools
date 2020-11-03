@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
 
 class DnsController extends Controller {
 
@@ -13,11 +13,20 @@ class DnsController extends Controller {
      * @param string|null $domain
      * @return View
      */
-    public function index(?string $domain = null): View {
+    public function index(?string $domain = null) {
+        $records = collect();
+
         if (!is_null($domain)) {
-            dd(collect(dns_get_record($domain, DNS_ALL)));
+            $records = collect(dns_get_record($domain, DNS_ALL))
+                ->sortBy("type")
+                ->mapToGroups(fn($record) => [$record["type"] => (object)$record]);
         }
 
+        return view('pages.dns', [
+            'title' => 'DNS lookup - Developer Tools :: Nightly.hu',
+            'domain' => $domain,
+            'records' => $records
+        ]);
     }
 
 }

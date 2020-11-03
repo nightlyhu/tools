@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Services\AgentService;
-use Illuminate\View\View;
 
 class HomeController extends Controller {
 
@@ -13,7 +12,7 @@ class HomeController extends Controller {
         $this->agentService = $agentService;
     }
 
-    public function home(): View {
+    public function home() {
         $ip = $this->agentService->getIp();
         $host = $ip ? gethostbyaddr($ip) : '-';
 
@@ -26,31 +25,31 @@ class HomeController extends Controller {
         ]);
     }
 
-    public function generators(): View {
+    public function generators() {
         return view('pages.generators', [
             'title' => 'Generators - Developer Tools :: Nightly.hu'
         ]);
     }
 
-    public function network(): View {
+    public function network() {
         return view('pages.network', [
             'title' => 'Network - Developer Tools :: Nightly.hu'
         ]);
     }
 
-    public function about(): View {
+    public function about() {
         return view('pages.about', [
             'title' => 'About - Developer Tools :: Nightly.hu'
         ]);
     }
 
-    public function links(): View {
+    public function links() {
         return view('pages.links', [
             'title' => 'Links - Developer Tools :: Nightly.hu'
         ]);
     }
 
-    public function colorPicker(string $color = "008080"): View {
+    public function colorPicker(string $color = "008080") {
         return view('pages.color-picker', [
             'title' => 'Color Picker - Developer Tools :: Nightly.hu',
             'color' => $color
