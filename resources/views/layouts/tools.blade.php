@@ -21,6 +21,17 @@
     <link href="https://cdn.jsdelivr.net/npm/izitoast@1.3.0/dist/css/iziToast.min.css" rel="stylesheet">
     <link href="{{ asset('css/tools.css') }}" rel="stylesheet"/>
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1XGT5GGYDX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-1XGT5GGYDX');
+    </script>
+
     @yield('styles')
 </head>
 
@@ -159,6 +170,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.10/sweetalert2.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/izitoast@1.3.0/dist/js/iziToast.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="{{ asset('js/main.js') }}" type="module"></script>
 <script src="{{ asset('js/tools.js') }}" type="module"></script>
 @yield('scripts')
 </body>
