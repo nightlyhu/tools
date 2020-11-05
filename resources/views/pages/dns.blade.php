@@ -11,7 +11,7 @@
     <meta property="og:locale" content="hu_HU"/>
 @endsection
 @section('scripts')
-    <script src="{{ asset('js/tools-generators.js') }}" type="module"></script>
+    <script src="{{ asset('js/tools-dns.js') }}" type="module"></script>
 @endsection
 @section('content')
     <h5 class="mb-3 text-uppercase text-center"><i class="mdi mdi-web"></i> DNS lookup</h5>
@@ -61,28 +61,32 @@
                 <tbody>
                 @foreach($items as $item)
                     <tr>
-                         <td class="p-2">{{ $item->host ?? "N/A" }}</td>
-                         <td class="p-2">{{ $item->class ?? "N/A" }}</td>
-                         <td class="p-2">{{ $item->ttl ?? "N/A" }}</td>
+                        <td class="p-2">{{ $item->host ?? "N/A" }}</td>
+                        <td class="p-2">{{ $item->class ?? "N/A" }}</td>
+                        <td class="p-2">{{ $item->ttl ?? "N/A" }}</td>
                         @if($type === "MX")
-                             <td class="p-2">{{ $item->pri ?? "N/A" }}</td>
+                            <td class="p-2">{{ $item->pri ?? "N/A" }}</td>
                         @endif
                         @if(in_array($type, ["A"]))
-                             <td class="p-2">{{ $item->ip ?? "N/A" }}</td>
+                            <td class="p-2">{{ $item->ip ?? "N/A" }}</td>
                         @endif
                         @if(in_array($type, ["AAAA"]))
-                             <td class="p-2">{{ $item->ipv6 ?? "N/A" }}</td>
+                            <td class="p-2">{{ $item->ipv6 ?? "N/A" }}</td>
                         @endif
                         @if(in_array($type, ["NS", "MX"]))
-                             <td class="p-2">{{ $item->target ?? "N/A" }}</td>
+                            <td class="p-2">{{ $item->target ?? "N/A" }}</td>
                         @endif
                         @if($type === "TXT")
-                             <td class="p-2">{{ $item->txt ?? "N/A" }}</td>
+                            <td class="p-2">{{ $item->txt ?? "N/A" }}</td>
                         @endif
                     </tr>
                 @endforeach
                 </tbody>
             </table>
         @endforeach
+    @elseif($domain)
+        <div class="alert alert-danger text-center">
+            <i class="mdi mdi-search-web"></i> The requested domain <b>({{ $domain }})</b> not found!
+        </div>
     @endif
 @stop

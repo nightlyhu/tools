@@ -45,7 +45,8 @@
     <nav class="my-2 my-md-0 mr-md-3">
         <a class="p-2 text-dark" href="{{ url('/') }}"><i class="mdi mdi-home-outline"></i> Home</a>
         <a class="p-2 text-dark" href="{{ url('generators') }}"><i class="mdi mdi-wrench"></i> Generators</a>
-        <a class="p-2 text-dark" href="{{ url('network') }}"><i class="mdi mdi-web"></i> Network</a>
+        <a class="p-2 text-dark" href="{{ url('network') }}"><i class="mdi mdi-ip-network"></i> Network</a>
+        <a class="p-2 text-dark" href="{{ url('dns') }}"><i class="mdi mdi-web"></i> DNS lookup</a>
         <a class="p-2 text-dark" href="{{ url('color-picker') }}"><i class="mdi mdi-eyedropper-variant"></i> Color
             Picker</a>
     </nav>
@@ -90,7 +91,12 @@
                     </li>
                     <li>
                         <a class="text-muted" href="{{ url('network') }}">
-                            <i class="mdi mdi-web"></i> Network
+                            <i class="mdi mdi-ip-network"></i> Network
+                        </a>
+                    </li>
+                    <li>
+                        <a class="text-muted" href="{{ url('dns') }}">
+                            <i class="mdi mdi-web"></i> DNS lookup
                         </a>
                     </li>
                     <li>
@@ -146,11 +152,6 @@
                     <li>
                         <a class="text-muted" href="http://nightly.hu" target="_blank">
                             <i class="mdi mdi-comment-text-outline"></i> Developer's blog
-                        </a>
-                    </li>
-                    <li>
-                        <a class="text-muted" href="http://vitamas.hu" target="_blank">
-                            <i class="mdi mdi-web"></i> ViTamas.hu
                         </a>
                     </li>
                     <li>

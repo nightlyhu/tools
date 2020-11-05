@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
+use Throwable;
 
 class DnsController extends Controller {
 
@@ -17,9 +18,13 @@ class DnsController extends Controller {
         $records = collect();
 
         if (!is_null($domain)) {
-            $records = collect(dns_get_record($domain, DNS_ALL))
-                ->sortBy("type")
-                ->mapToGroups(fn($record) => [$record["type"] => (object)$record]);
+            try {
+                $records = collect(dns_get_record($domain, DNS_ALL))
+                    ->sortBy("type")
+                    ->mapToGroups(fn($record) => [$record["type"] => (object)$record]);
+            } catch (Throwable $e) {
+                $records = collect();
+            }
         }
 
         return view('pages.dns', [
