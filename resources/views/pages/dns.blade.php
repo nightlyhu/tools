@@ -38,9 +38,8 @@
             <table class="table table-striped table-sm table-bordered">
                 <thead>
                 <tr>
-                    <th scope="col" class="p-2">Host</th>
-                    <th scope="col" class="p-2">Class</th>
-                    <th scope="col" class="p-2">TTL</th>
+                    <th scope="col" style="width: 20%" class="p-2">Host</th>
+                    <th scope="col" style="width: 20%" class="p-2">TTL</th>
                     @if($type === "MX")
                         <th scope="col" class="p-2">Priority</th>
                     @endif
@@ -62,8 +61,10 @@
                 @foreach($items as $item)
                     <tr>
                         <td class="p-2">{{ $item->host ?? "N/A" }}</td>
-                        <td class="p-2">{{ $item->class ?? "N/A" }}</td>
-                        <td class="p-2">{{ $item->ttl ?? "N/A" }}</td>
+                        <td class="p-2">
+                            <i class="mdi mdi-clock-outline"></i> {{ $item->ttl ?? "N/A" }} sec
+                            <span class="text-success">({{ $item->ttlinfo }})</span>
+                        </td>
                         @if($type === "MX")
                             <td class="p-2">{{ $item->pri ?? "N/A" }}</td>
                         @endif

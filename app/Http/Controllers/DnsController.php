@@ -21,7 +21,15 @@ class DnsController extends Controller {
             try {
                 $records = collect(dns_get_record($domain, DNS_ALL))
                     ->sortBy("type")
-                    ->mapToGroups(fn($record) => [$record["type"] => (object)$record]);
+                    ->mapToGroups(function ($record) {
+                        if (isset($record["ttl"])) {
+                            $record["ttlinfo"] = gmdate('H:i:s', $record["ttl"]);
+                            if ($record["ttl"] === 86_400) {
+                                $record["ttlinfo"] = ">24h";
+                            }
+                        }
+                        return [$record["type"] => (object)$record];
+                    });
             } catch (Throwable $e) {
                 $records = collect();
             }
