@@ -16,7 +16,7 @@
 
     <link rel="icon" type="image/png" href="{{ url('tools-favicon.png') }}"/>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="//cdn.materialdesignicons.com/5.0.45/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="//cdn.jsdelivr.net/npm/@mdi/font@5.8.55/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="//cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.10/sweetalert2.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/izitoast@1.3.0/dist/css/iziToast.min.css" rel="stylesheet">
     <link href="{{ asset('css/tools.css') }}" rel="stylesheet"/>
