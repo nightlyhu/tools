@@ -14,7 +14,7 @@ class DnsController extends Controller {
      * @param string|null $domain
      * @return View
      */
-    public function index(?string $domain = null) {
+    public function index(?string $domain = null): View {
         $records = collect();
 
         if (!is_null($domain)) {
@@ -30,7 +30,7 @@ class DnsController extends Controller {
                         }
                         return [$record["type"] => (object)$record];
                     });
-            } catch (Throwable $e) {
+            } catch (Throwable) {
                 $records = collect();
             }
         }

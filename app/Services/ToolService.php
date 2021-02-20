@@ -15,32 +15,17 @@ class ToolService extends Service {
      * @return string
      */
     public function textTransform(string $action, bool $multiple, string $text): string {
-        if ($multiple) {
-            $strings = explode('<br />', nl2br($text));
-        } else {
-            $strings = [$text];
-        }
-
+        $strings = $multiple ? explode('<br />', nl2br($text)) : [$text];
         $results = "";
 
         foreach ($strings as $string) {
-            $result = "";
-
-            switch ($action) {
-                case 'uppercase':
-                    $result = Str::upper($string);
-                    break;
-                case 'lowercase':
-                    $result = Str::lower($string);
-                    break;
-                case 'title-case':
-                    $result = Str::title($string);
-                    break;
-                case 'slugify':
-                    $result = Str::slug($string);
-                    break;
-            }
-
+            $result = match ($action) {
+                'uppercase' => Str::upper($string),
+                'lowercase' => Str::lower($string),
+                'title-case' => Str::title($string),
+                'slugify' => Str::slug($string),
+                default => ""
+            };
 
             $results .= $result . '<br>';
         }
@@ -53,23 +38,15 @@ class ToolService extends Service {
      *
      * @param string $algorithm
      * @param string $text
-     * @return false|string|null
+     * @return string
      */
     public function hash(string $algorithm, string $text): string {
-        $hash = '';
-        switch ($algorithm) {
-            case 'md5':
-                $hash = md5($text);
-                break;
-            case 'sha1':
-                $hash = sha1($text);
-                break;
-            case 'bcrypt':
-                $hash = password_hash($text, PASSWORD_BCRYPT);
-                break;
-        }
-
-        return $hash;
+        return match ($algorithm) {
+            'md5' => md5($text),
+            'sha1' => sha1($text),
+            'bcrypt' => password_hash($text, PASSWORD_BCRYPT),
+            default => ""
+        };
     }
 
     /**
@@ -84,31 +61,17 @@ class ToolService extends Service {
         $numbers = '0123456789';
         $symbols = '._-';
         $strongSymbols = '@#$%';
-        $chars = '';
 
-        switch ($strength) {
-            case 'numbers':
-                $chars = $numbers;
-                break;
-            case 'letters':
-                $chars = $letters . mb_strtoupper($letters);
-                break;
-            case 'lowercase-letters':
-                $chars = $letters;
-                break;
-            case 'uppercase-letters':
-                $chars = mb_strtoupper($letters);
-                break;
-            case 'alphanumeric':
-                $chars = $letters . mb_strtoupper($letters) . $numbers;
-                break;
-            case 'symbols':
-                $chars = $letters . mb_strtoupper($letters) . $numbers . $symbols;
-                break;
-            case 'strong-symbols':
-                $chars = $letters . mb_strtoupper($letters) . $numbers . $symbols . $strongSymbols;
-                break;
-        }
+        $chars = match ($strength) {
+            'numbers' => $numbers,
+            'letters' => $letters . mb_strtoupper($letters),
+            'lowercase-letters' => $letters,
+            'uppercase-letters' => mb_strtoupper($letters),
+            'alphanumeric' => $letters . mb_strtoupper($letters) . $numbers,
+            'symbols' => $letters . mb_strtoupper($letters) . $numbers . $symbols,
+            'strong-symbols' => $letters . mb_strtoupper($letters) . $numbers . $symbols . $strongSymbols,
+            default => ""
+        };
 
         $count = mb_strlen($chars);
         $password = '';
@@ -129,17 +92,11 @@ class ToolService extends Service {
      * @return string
      */
     public function encoding(string $method, string $action, string $text): string {
-        $result = '';
-        switch ($method) {
-            case 'base64':
-                $result = $action == 'encode' ? base64_encode($text) : base64_decode($text);
-                break;
-            case 'url':
-                $result = $action == 'encode' ? urlencode($text) : urldecode($text);
-                break;
-        }
-
-        return $result;
+        return match ($method) {
+            'base64' => $action == 'encode' ? base64_encode($text) : base64_decode($text),
+            'url' => $action == 'encode' ? urlencode($text) : urldecode($text),
+            default => ""
+        };
     }
 
 }

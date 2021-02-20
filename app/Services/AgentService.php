@@ -6,10 +6,7 @@ use stdClass;
 
 class AgentService extends Service {
 
-    /**
-     * @return mixed
-     */
-    public function getIp() {
+    public function getIp(): mixed {
         if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
             $ip = $_SERVER['HTTP_CLIENT_IP'];
         } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
@@ -21,10 +18,7 @@ class AgentService extends Service {
         return $ip;
     }
 
-    /**
-     * @return stdClass
-     */
-    public function getBrowser() {
+    public function getBrowser(): stdClass {
         $browser = new stdClass();
         $browser->useragent = $_SERVER['HTTP_USER_AGENT'];
 
@@ -93,10 +87,7 @@ class AgentService extends Service {
         return $browser;
     }
 
-    /**
-     * @return mixed|string
-     */
-    public function getOS() {
+    public function getOS(): string {
         $userAgent = $_SERVER['HTTP_USER_AGENT'];
         $osPlatform = "Unknown OS Platform";
 
